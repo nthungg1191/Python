@@ -1,0 +1,14 @@
+loan_amnt,term,int_rate,emp_length,home_ownership,annual_inc,purpose,addr_state,dti,delinq_2yrs,revol_util,total_acc,bad_loan,longest_cr_line,verification_status
+5000,36 months,10.65,10,RENT,24000,credit_card,AZ,27.65,0,83.7,9,0,12,verified
+2500,60 months,15.27,<1,RENT,30000,car,GA,1.0,0,9.4,4,0,12,verified
+2400,36 months,15.96,10,RENT,12252,small_business,CA,8.72,0,98.5,10,0,12,verified
+10000,36 months,13.49,<1,RENT,49200,wedding,CA,20.0,0,21.0,37,0,12,verified
+3000,60 months,12.69,9,RENT,36000,debt_consolidation,CA,17.94,0,53.9,14,0,12,verified
+5000,36 months,7.9,<1,RENT,87000,small_business,OR,14.33,0,70.3,7,0,12,verified
+7000,60 months,15.96,5,RENT,54000,debt_consolidation,TX,16.74,0,36.5,10,0,12,verified
+3000,36 months,18.64,3,RENT,45000,credit_card,IL,2.67,0,37.1,15,0,12,verified
+5600,36 months,21.28,8,OWN,40000,debt_consolidation,AZ,20.0,0,28.3,22,0,12,verified
+5375,60 months,12.87,10,RENT,75000,debt_consolidation,CA,17.25,0,36.9,13,0,12,verified
+10000,36 months,9.91,9,RENT,55000,debt_consolidation,CA,10.08,0,37.2,12,0,12,verified
+6000,36 months,16.29,10,RENT,35000,credit_card,CA,23.45,0,38.6,11,0,12,verified
+9200,36 months,11.71,10,RENT,0,debt_consolidation,CA,20.0,0,0.0,12,0,12,verified
