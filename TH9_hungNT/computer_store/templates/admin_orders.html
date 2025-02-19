@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý đơn hàng</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_orders.css') }}">
+</head>
+<body>
+
+    <header>
+        <h1>📦 Quản lý đơn hàng</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('main_routes.home') }}">🏠 Trang chủ</a></li>
+                <li><a href="{{ url_for('products.view_products') }}">🛍️ Sản phẩm</a></li>
+                <li><a href="{{ url_for('admin.view_statistics') }}">📊 Thống kê</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% if orders %}
+            <table class="order-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Người đặt</th>
+                        <th>Tổng tiền</th>
+                        <th>Trạng thái</th>
+                        <th>Ngày tạo</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                    <tr>
+                        <td>#{{ order.id }}</td>
+                        <td>{{ order.user_id }}</td>
+                        <td>{{ "{:,.0f}".format(order.total_price) }} VND</td>
+                        <td class="status-{{ order.status }}">{{ order.status }}</td>
+                        <td>{{ order.created_at }}</td>
+                        <td>
+                            <form action="{{ url_for('admin.update_order_status', order_id=order.id) }}" method="POST">
+                                <select name="new_status">
+                                    <option value="pending" {% if order.status == 'pending' %}selected{% endif %}>Pending</option>
+                                    <option value="processing" {% if order.status == 'processing' %}selected{% endif %}>Processing</option>
+                                    <option value="completed" {% if order.status == 'completed' %}selected{% endif %}>Completed</option>
+                                    <option value="canceled" {% if order.status == 'canceled' %}selected{% endif %}>Canceled</option>
+                                </select>
+                                <button type="submit" class="update-btn">Cập nhật</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="empty-orders">Chưa có đơn hàng nào.</p>
+        {% endif %}
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đơn hàng của tôi</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='oders.css') }}">
+</head>
+<body>
+    <header>
+        <h1>📦 Đơn hàng của bạn</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('main_routes.home') }}">🏠 Trang chủ</a></li>
+                <li><a href="{{ url_for('products.view_products') }}">🛍️ Sản phẩm</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% if orders %}
+            <table class="orders-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tổng tiền</th>
+                        <th>Trạng thái</th>
+                        <th>Ngày tạo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                    <tr>
+                        <td>#{{ order.id }}</td>
+                        <td>{{ "{:,.0f}".format(order.total_price) }} VND</td>
+                        <td>{{ order.status }}</td>
+                        <td>{{ order.created_at }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Bạn chưa có đơn hàng nào.</p>
+        {% endif %}
+    </main>
+</body>
+</html>

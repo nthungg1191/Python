@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Giỏ hàng</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='cart.css') }}">
+</head>
+<body>
+
+    <!-- ✅ Hiển thị thông báo Flash -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flash-container">
+            {% for category, message in messages %}
+                <div class="flash flash-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+
+    <header>
+        <h1>🛒 Giỏ hàng của bạn</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('main_routes.home') }}">🏠 Trang chủ</a></li>
+                <li><a href="{{ url_for('products.view_products') }}">🛍️ Sản phẩm</a></li>
+                <li><a href="{{ url_for('orders.view_orders') }}">📦 Lịch sử đơn hàng</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% if session['cart'] %}
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>Tên sản phẩm</th>
+                        <th>Giá</th>
+                        <th>Số lượng</th>
+                        <th>Thành tiền</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in session['cart'] %}
+                    <tr>
+                        <td>{{ item.name }}</td>
+                        <td>{{ "{:,.0f}".format(item.price|float) }} VND</td>
+                        <td>
+                            <form action="{{ url_for('cart.update_quantity', product_id=item.id) }}" method="POST" class="quantity-form">
+                                <input type="number" name="quantity" value="{{ item.quantity }}" min="1" class="quantity-input">
+                                <button type="submit" class="update-btn">🔄 Cập nhật</button>
+                            </form>
+                        </td>
+                        <td>{{ "{:,.0f}".format(item.price|float * item.quantity) }} VND</td>
+                        <td>
+                            <form action="{{ url_for('cart.remove_from_cart', product_id=item.id) }}" method="POST">
+                                <button type="submit" class="remove-btn">❌ Xóa</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <form action="{{ url_for('cart.checkout') }}" method="POST">
+                <button type="submit" class="checkout-btn">💳 Thanh toán</button>
+            </form>
+        {% else %}
+            <p class="empty-cart">🛒 Giỏ hàng trống. Hãy chọn sản phẩm!</p>
+        {% endif %}
+    </main>
+
+</body>
+</html>

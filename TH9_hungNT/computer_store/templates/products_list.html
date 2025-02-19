@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách sản phẩm</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='list_product.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Danh sách sản phẩm</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('main_routes.home') }}">Trang chủ</a></li>
+                <li><a href="{{ url_for('products.add_product') }}">Thêm sản phẩm</a></li>
+                <li>
+                    <a href="{{ url_for('cart.view_cart') }}" class="cart-btn">
+                        🛒 Giỏ hàng 
+                        {% if session['cart'] %}
+                            <span class="cart-count">{{ session['cart']|length }}</span>
+                        {% endif %}
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flash-messages">
+            {% for category, message in messages %}
+                <div class="flash flash-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Mô tả</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+                    <th>Hình ảnh</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>{{ "{:,.0f}".format(product.price|float) }} VND</td>
+                    <td>{{ product.stock }}</td>
+                    <td><img src="{{ product.image_url }}" alt="Hình ảnh sản phẩm" class="product-img"></td>
+                    <td>
+                        <a href="{{ url_for('products.edit_product', product_id=product.id) }}" class="edit-btn">Sửa</a>
+                    
+                        <form action="{{ url_for('products.delete_product', product_id=product.id) }}" method="POST" class="inline-form">
+                            <button type="submit" class="delete-btn" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')">Xóa</button>
+                        </form>
+                    
+                        <form action="{{ url_for('cart.add_to_cart', product_id=product.id) }}" method="POST" class="inline-form">
+                            <button type="submit" class="buy-btn">Mua hàng</button>
+                        </form>
+                    </td>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+    </main>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <title>Quản lý tài khoản</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_users.css') }}">
+</head>
+<body>
+    <header>
+        <h1>👥 Quản lý tài khoản</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('main_routes.home') }}">🏠 Trang chủ</a></li>
+                <li><a href="{{ url_for('admin.manage_orders') }}">📦 Quản lý đơn hàng</a></li>
+                <li><a href="{{ url_for('admin.view_statistics') }}">📊 Thống kê</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <table class="user-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên người dùng</th>
+                    <th>Email</th>
+                    <th>Vai trò</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>#{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        <form action="{{ url_for('admin.update_user_role', user_id=user.id) }}" method="POST">
+                            <select name="new_role">
+                                <option value="user" {% if user.role == 'user' %}selected{% endif %}>User</option>
+                                <option value="admin" {% if user.role == 'admin' %}selected{% endif %}>Admin</option>
+                            </select>
+                            <button type="submit" class="update-btn">Lưu</button>
+                        </form>
+                    </td>
+                    <td>
+                        {% if user.id != current_user.id %}
+                        <form action="{{ url_for('admin.delete_user', user_id=user.id) }}" method="POST" onsubmit="return confirm('Bạn có chắc chắn muốn xóa tài khoản này?');">
+                            <button type="submit" class="delete-btn">Xóa</button>
+                        </form>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

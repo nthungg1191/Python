@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thống kê doanh thu</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_statistics.css') }}">
+</head>
+<body>
+
+    <header>
+        <h1>📊 Thống kê doanh thu</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('main_routes.home') }}">🏠 Trang chủ</a></li>
+                <li><a href="{{ url_for('admin.manage_orders') }}">📦 Quản lý đơn hàng</a></li>
+                <div class="export-container">
+                    <a href="{{ url_for('admin.export_statistics') }}" class="export-btn">📥 Xuất Excel</a>
+                </div>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="stats-container">
+        <h2 class="stats-header">📅 Thống kê hôm nay</h2>
+        <div class="stats-box"><i>💰</i> Doanh thu: <span>{{ "{:,.0f}".format(today_stats['total_revenue']) }} VND</span></div>
+        <div class="stats-box"><i>🛍️</i> Tổng đơn hàng: <span>{{ today_stats['total_orders'] }}</span></div>
+        <div class="stats-box"><i>✅</i> Đơn hoàn thành: <span>{{ today_stats['completed_orders'] }}</span></div>
+        <div class="stats-box"><i>❌</i> Đơn hủy: <span>{{ today_stats['canceled_orders'] }}</span></div>
+        <div class="stats-box"><i>📦</i> Sản phẩm đã bán: <span>{{ today_stats['total_products_sold'] }}</span></div>
+    </div>
+
+    <div class="stats-container">
+        <h2 class="stats-header">📅 Thống kê tháng này</h2>
+        <div class="stats-box"><i>💰</i> Doanh thu: <span>{{ "{:,.0f}".format(monthly_stats['total_revenue']) }} VND</span></div>
+        <div class="stats-box"><i>🛍️</i> Tổng đơn hàng: <span>{{ monthly_stats['total_orders'] }}</span></div>
+        <div class="stats-box"><i>✅</i> Đơn hoàn thành: <span>{{ monthly_stats['completed_orders'] }}</span></div>
+        <div class="stats-box"><i>❌</i> Đơn hủy: <span>{{ monthly_stats['canceled_orders'] }}</span></div>
+        <div class="stats-box"><i>📦</i> Sản phẩm đã bán: <span>{{ monthly_stats['total_products_sold'] }}</span></div>
+    </div>
+
+</body>
+</html>

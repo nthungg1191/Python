@@ -1,0 +1,129 @@
+/* 🌟 Định dạng toàn trang */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* 🌟 Header */
+header {
+    background: white;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* 🌟 Tiêu đề */
+h1 {
+    color: #333;
+    font-size: 24px;
+}
+
+/* 🌟 Điều hướng */
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #0056b3;
+}
+
+/* 🌟 Bảng đơn hàng */
+.order-table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.order-table th, .order-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.order-table th {
+    background-color: #007bff;
+    color: white;
+    text-transform: uppercase;
+}
+
+/* 🌟 Dropdown trạng thái */
+.status-dropdown {
+    padding: 6px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+/* 🌟 Nút cập nhật */
+.update-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.update-btn:hover {
+    background-color: #218838;
+}
+
+/* 🌟 Hiệu ứng hover trên bảng */
+.order-table tbody tr:hover {
+    background-color: #f2f2f2;
+}
+
+/* 🌟 Làm đẹp thông báo flash */
+.flash-container {
+    width: 80%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+.flash {
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    animation: fadeOut 4s ease-in-out forwards;
+}
+
+/* 🌟 Màu sắc cho thông báo */
+.flash-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.flash-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* 🌟 Hiệu ứng mờ dần sau 4 giây */
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { opacity: 0; display: none; }
+}

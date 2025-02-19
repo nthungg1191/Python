@@ -1,0 +1,103 @@
+/* 🌟 Định dạng toàn trang */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* 🌟 Header */
+header {
+    background: white;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* 🌟 Tiêu đề */
+h1 {
+    color: #333;
+    font-size: 26px;
+}
+
+/* 🌟 Điều hướng */
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #0056b3;
+}
+
+/* 🌟 Khung thống kê */
+.stats-container {
+    width: 80%;
+    margin: 20px auto;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* 🌟 Tiêu đề khu vực thống kê */
+.stats-header {
+    font-size: 22px;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+/* 🌟 Dữ liệu thống kê */
+.stats-box {
+    text-align: left;
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.stats-box span {
+    font-weight: bold;
+    color: #333;
+}
+
+/* 🌟 Icon */
+.stats-box i {
+    margin-right: 8px;
+}
+
+/* 🌟 Hiệu ứng hover */
+.stats-container:hover {
+    transform: scale(1.02);
+    transition: 0.3s ease-in-out;
+}
+/* 🌟 Nút tải Excel */
+.export-container {
+    margin-top: 20px;
+}
+
+.export-btn {
+    display: inline-block;
+    background: #28a745;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.export-btn:hover {
+    background: #218838;
+}
+

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm Sản phẩm</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        input, textarea, button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        button a{
+            text-decoration:none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Thêm Sản phẩm</h1>
+        <form method="POST">
+            <label for="name">Tên sản phẩm:</label>
+            <input type="text" name="name" required>
+
+            <label for="description">Mô tả:</label>
+            <textarea name="description"></textarea>
+
+            <label for="price">Giá:</label>
+            <input type="number" name="price" required>
+
+            <label for="stock">Số lượng:</label>
+            <input type="number" name="stock" required>
+
+            <label for="image_url">URL hình ảnh:</label>
+            <input type="text" name="image_url">
+
+            <button type="submit">Thêm sản phẩm</button>
+            <button>
+                <a href="{{ url_for('products.view_products') }}" class="cancel-btn">Hủy</a>
+            </button>
+            
+        </form>
+    </div>
+</body>
+</html>
